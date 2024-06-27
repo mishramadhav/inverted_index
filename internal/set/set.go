@@ -19,6 +19,15 @@ func NewWithMaxSize[T comparable](maxSize int) *Set[T] {
 	}
 }
 
+// NewWithValues creates a new set with the given values.
+func NewWithValues[T comparable](values ...T) *Set[T] {
+	s := NewWithMaxSize[T](len(values))
+	for _, value := range values {
+		s.Add(value)
+	}
+	return s
+}
+
 // Add adds a value to the set.
 func (s *Set[T]) Add(value T) {
 	s.data[value] = struct{}{}
